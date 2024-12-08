@@ -62,4 +62,29 @@ public class Controller {
             return "Erreur lors de la suppression de l'utilisateur: " + e.getMessage();
         }
     }
+    
+    //update un utilisateur 
+    @PutMapping("/update")
+    public String updateUser(@RequestBody User user, @RequestParam String oldUsername) {
+        try (Connection connexion = DriverManager.getConnection(bddUrl, bddLogin, bddMdp)) {
+            String req = "UPDATE user SET username = ?, mdp = ? WHERE username = ?";
+            try (PreparedStatement statement = connexion.prepareStatement(req)) {
+                statement.setString(1, user.getUsername());  
+                statement.setString(2, user.getMdp());       
+                statement.setString(3, oldUsername);         
+                int rowsAffected = statement.executeUpdate();
+                if (rowsAffected > 0) {
+                    return "Utilisateur mis à jour avec succès";
+                } else {
+                    return "Aucun utilisateur trouvé avec ce nom";
+                }
+            }
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 1062) {  
+                return "Nom d'utilisateur déjà existant";
+            } else {
+                return "Erreur mise à jour utilisateur: " + e.getMessage();
+            }
+        }
+    }
 }
