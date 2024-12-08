@@ -23,7 +23,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven in userManagerMS folder
-        run:  mvn clean install -f userManagertMS/pom.xml
+        run:  mvn clean install -f ./userManagerMS/pom.xml
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
