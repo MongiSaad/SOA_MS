@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Build with Maven in userManagertMS folder
+      - name: Build with Maven in userManagerMS folder
         run:  mvn clean install -f userManagertMS/pom.xml
 
       - name: Upload artifact for deployment job
