@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class Controller {
     
-    private String bddUrl = jdbc:mysql://srv-bdens.insa-toulouse.fr:3306/projet_gei_062;
-    private String bddLogin = projet_gei_062;
-    private String bddMdp = Uph3Quie;
+    private String bddUrl = "jdbc:mysql://srv-bdens.insa-toulouse.fr:3306/projet_gei_062";
+    private String bddLogin = "projet_gei_062";
+    private String bddMdp = "Uph3Quie";
 
     // Ajouter un utilisateur
     @PostMapping("/add")
